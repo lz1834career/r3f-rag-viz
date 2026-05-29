@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { type ThreeEvent } from "@react-three/fiber";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useThree, type ThreeEvent } from "@react-three/fiber";
 import type { Mesh } from "three";
+import { Plane, Vector3 } from "three";
 import { scoreToColor, scoreToScale, type SceneNode } from "@r3f-rag-viz/core";
 import { useSceneStore } from "./store/scene-store";
 import { useSimulation } from "./simulation-context";
@@ -16,10 +17,17 @@ export function GraphNode({ node }: GraphNodeProps) {
   const [hovered, setHovered] = useState(false);
   const [dragging, setDragging] = useState(false);
 
+  const { camera } = useThree();
+  const dragPlane = useMemo(() => new Plane(), []);
+  const planeNormal = useMemo(() => new Vector3(), []);
+  const hitPoint = useMemo(() => new Vector3(), []);
+  const grabOffset = useMemo(() => new Vector3(), []);
+
   const selectedNodeId = useSceneStore((s) => s.selectedNodeId);
   const selectNode = useSceneStore((s) => s.selectNode);
   const syncNodeCoords = useSceneStore((s) => s.syncNodeCoords);
   const setSimulating = useSceneStore((s) => s.setSimulating);
+  const setDraggingNode = useSceneStore((s) => s.setDraggingNode);
   const updateNodePosition = useSceneStore((s) => s.updateNodePosition);
   const { pinNode, nodeRegistry } = useSimulation();
 
@@ -35,30 +43,29 @@ export function GraphNode({ node }: GraphNodeProps) {
     return () => nodeRegistry.unregister(node.id);
   }, [node.id, nodeRegistry]);
 
-  const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
-    e.stopPropagation();
-    setDragging(true);
-    setSimulating(false);
-    pinNode(node.id, true);
-    syncNodeCoords(node);
-    selectNode(node.id);
-  };
-
-  const handlePointerUp = (e: ThreeEvent<PointerEvent>) => {
-    e.stopPropagation();
-    if (dragging) {
-      updateNodePosition(node.id, node.x, node.y, node.z);
-    }
+  const endDrag = () => {
+    if (!dragging) return;
     setDragging(false);
+    setDraggingNode(false);
     pinNode(node.id, false);
     setSimulating(true);
+    updateNodePosition(node.id, node.x, node.y, node.z);
     document.body.style.cursor = "auto";
   };
 
-  const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
+  useEffect(() => {
     if (!dragging) return;
-    e.stopPropagation();
-    const { x, y, z } = e.point;
+    const onWindowPointerUp = () => endDrag();
+    window.addEventListener("pointerup", onWindowPointerUp);
+    window.addEventListener("pointercancel", onWindowPointerUp);
+    return () => {
+      window.removeEventListener("pointerup", onWindowPointerUp);
+      window.removeEventListener("pointercancel", onWindowPointerUp);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dragging]);
+
+  const applyPosition = (x: number, y: number, z: number) => {
     node.x = x;
     node.y = y;
     node.z = z;
@@ -66,6 +73,41 @@ export function GraphNode({ node }: GraphNodeProps) {
     node.fy = y;
     node.fz = z;
     meshRef.current?.position.set(x, y, z);
+  };
+
+  const handlePointerDown = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+
+    setDragging(true);
+    setDraggingNode(true);
+    setSimulating(false);
+    pinNode(node.id, true);
+    syncNodeCoords(node);
+    selectNode(node.id);
+
+    camera.getWorldDirection(planeNormal);
+    dragPlane.setFromNormalAndCoplanarPoint(planeNormal, e.point);
+    grabOffset.copy(e.point).sub(meshRef.current!.position);
+  };
+
+  const handlePointerUp = (e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
+    endDrag();
+  };
+
+  const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
+    if (!dragging) return;
+    e.stopPropagation();
+
+    if (!e.ray.intersectPlane(dragPlane, hitPoint)) return;
+
+    applyPosition(
+      hitPoint.x - grabOffset.x,
+      hitPoint.y - grabOffset.y,
+      hitPoint.z - grabOffset.z
+    );
   };
 
   return (
@@ -78,7 +120,7 @@ export function GraphNode({ node }: GraphNodeProps) {
       onPointerOver={(e) => {
         e.stopPropagation();
         setHovered(true);
-        document.body.style.cursor = dragging ? "grabbing" : "grab";
+        if (!dragging) document.body.style.cursor = "grab";
       }}
       onPointerOut={() => {
         setHovered(false);

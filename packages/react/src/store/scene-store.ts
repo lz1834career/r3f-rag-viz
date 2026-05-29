@@ -6,9 +6,11 @@ type SceneStore = {
   nodes: SceneNode[];
   selectedNodeId: string | null;
   isSimulating: boolean;
+  isDraggingNode: boolean;
   onSceneChange?: (event: SceneChangeEvent) => void;
 
   initGraph: (graph: RAGGraph, nodes: SceneNode[]) => void;
+  setDraggingNode: (value: boolean) => void;
   syncNodeCoords: (node: SceneNode) => void;
   updateNodePosition: (id: string, x: number, y: number, z: number) => void;
   selectNode: (id: string | null) => void;
@@ -21,9 +23,12 @@ export const useSceneStore = create<SceneStore>((set, get) => ({
   nodes: [],
   selectedNodeId: null,
   isSimulating: true,
+  isDraggingNode: false,
   onSceneChange: undefined,
 
   initGraph: (graph, nodes) => set({ graph, nodes }),
+
+  setDraggingNode: (value) => set({ isDraggingNode: value }),
 
   syncNodeCoords: (node) => {
     set((state) => ({

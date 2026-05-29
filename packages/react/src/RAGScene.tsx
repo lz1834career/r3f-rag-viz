@@ -2,7 +2,7 @@
 
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { SceneControls } from "./SceneControls";
 import {
   createForce3dLayout,
   type RAGSceneProps,
@@ -67,13 +67,7 @@ function SceneContent() {
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} intensity={1} />
       <GraphScene />
-      <OrbitControls
-        makeDefault
-        enableDamping
-        dampingFactor={0.05}
-        minDistance={5}
-        maxDistance={60}
-      />
+      <SceneControls />
     </>
   );
 }
@@ -150,7 +144,7 @@ export function RAGScene({ graph, onSceneChange, className }: RAGSceneProps) {
   return (
     <div className={className ?? "relative h-full w-full"}>
       <p className="pointer-events-none absolute bottom-3 left-1/2 z-10 -translate-x-1/2 text-xs text-zinc-600">
-        drag nodes · click to inspect · scroll to zoom
+        left-drag node · right-drag rotate · scroll zoom · middle pan
       </p>
 
       {contextLost ? (
