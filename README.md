@@ -4,9 +4,13 @@
 
 Map vector retrieval results to an interactive 3D scene: drag nodes, inspect chunks, emit edit events back to your app.
 
+**Live demo:** [r3f-rag-viz-demo.vercel.app](https://r3f-rag-viz-demo.vercel.app/)
+
 ## Demo
 
 ![Search → 3D knowledge graph — drag nodes, inspect chunks](./assets/demo.gif)
+
+Try it online → **[r3f-rag-viz-demo.vercel.app](https://r3f-rag-viz-demo.vercel.app/)**
 
 1. Type a query (or pick a suggestion) and click **Visualize**
 2. Retrieval hits become a **3D subgraph** — node size/color reflect relevance scores
@@ -128,6 +132,7 @@ See [packages/core/src/types.ts](packages/core/src/types.ts) for `RAGNode`, `RAG
 - [x] Demo with search → 3D visualization
 - [x] GitHub Actions CI + core tests
 - [x] README demo GIF
+- [x] Live demo on Vercel
 - [ ] npm publish
 - [ ] Semantic / UMAP layout (Web Worker)
 - [ ] Adapters (LangChain, Neo4j GraphRAG)
