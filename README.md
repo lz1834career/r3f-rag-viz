@@ -32,6 +32,20 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) — search the sample knowledge base and visualize results in 3D.
 
+## Deploy to Vercel
+
+This is a **monorepo**; the Next.js app lives in `apps/demo`.
+
+1. Import the repo on [Vercel](https://vercel.com/new)
+2. Set **Root Directory** → `apps/demo`
+3. Framework Preset → **Next.js** (auto-detected)
+4. **Do not** set Output Directory to `public` — leave empty or use defaults
+5. Deploy
+
+`apps/demo/vercel.json` installs workspace deps from the repo root and builds packages first.
+
+If Root Directory is the repo root instead, use the root `vercel.json` and set Framework to **Next.js**.
+
 ## Usage
 
 ```tsx
