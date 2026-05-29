@@ -5,9 +5,10 @@
     "moduleResolution": "bundler",
     "strict": true,
     "declaration": true,
+    "noEmit": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "outDir": "dist"
   },
-  "include": ["src/**/*", "src/**/*.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts"]
 }

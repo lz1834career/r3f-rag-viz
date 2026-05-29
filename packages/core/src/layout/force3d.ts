@@ -1,3 +1,4 @@
+/// <reference path="../d3-force-3d.d.ts" />
 import {
   forceCenter,
   forceLink,
