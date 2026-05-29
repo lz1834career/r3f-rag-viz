@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Live Demo
+    url: https://r3f-rag-viz-demo.vercel.app/
+    about: Try the interactive 3D RAG knowledge graph
+  - name: Discussions (if enabled)
+    url: https://github.com/lz1834career/r3f-rag-viz/discussions
+    about: Questions and ideas (enable Discussions in repo settings first)

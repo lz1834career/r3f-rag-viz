@@ -1,0 +1,48 @@
+name: Feature Request
+description: Suggest an improvement or new capability
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas for layouts, adapters, performance, or DX are welcome.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What are you trying to do? Who benefits?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you like this to work?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Layout (UMAP, hierarchical, semantic sphere)
+        - Adapter (LangChain, LlamaIndex, Neo4j, etc.)
+        - Scene editing / NL commands
+        - Performance (LOD, instancing, WebGPU)
+        - API / types / hooks
+        - Demo / docs
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a PR for this
+        - label: I can help test a prototype
