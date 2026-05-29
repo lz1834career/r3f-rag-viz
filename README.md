@@ -4,6 +4,14 @@
 
 Map vector retrieval results to an interactive 3D scene: drag nodes, inspect chunks, emit edit events back to your app.
 
+## Demo
+
+![Search → 3D knowledge graph — drag nodes, inspect chunks](./assets/demo.gif)
+
+1. Type a query (or pick a suggestion) and click **Visualize**
+2. Retrieval hits become a **3D subgraph** — node size/color reflect relevance scores
+3. **Left-drag** nodes · **right-drag** rotate · **scroll** zoom · click a node to read its chunk in the inspector
+
 ## Monorepo structure
 
 ```
@@ -105,6 +113,7 @@ See [packages/core/src/types.ts](packages/core/src/types.ts) for `RAGNode`, `RAG
 - [x] Monorepo (`@r3f-rag-viz/core`, `@r3f-rag-viz/react`)
 - [x] Demo with search → 3D visualization
 - [x] GitHub Actions CI + core tests
+- [x] README demo GIF
 - [ ] npm publish
 - [ ] Semantic / UMAP layout (Web Worker)
 - [ ] Adapters (LangChain, Neo4j GraphRAG)
