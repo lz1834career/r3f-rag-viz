@@ -1,70 +1,49 @@
 # r3f-rag-viz
 
-**Editable 3D visualization layer for RAG & knowledge graphs** — built with React Three Fiber.
+**Editable 3D visualization layer for RAG & knowledge graphs** ? built with React Three Fiber.
+
+[![npm: react](https://img.shields.io/npm/v/r3f-rag-viz-react?label=r3f-rag-viz-react)](https://www.npmjs.com/package/r3f-rag-viz-react)
+[![npm: core](https://img.shields.io/npm/v/r3f-rag-viz-core?label=r3f-rag-viz-core)](https://www.npmjs.com/package/r3f-rag-viz-core)
+[![CI](https://github.com/lz1834career/r3f-rag-viz/actions/workflows/ci.yml/badge.svg)](https://github.com/lz1834career/r3f-rag-viz/actions/workflows/ci.yml)
 
 Map vector retrieval results to an interactive 3D scene: drag nodes, inspect chunks, emit edit events back to your app.
 
-**Live demo:** [r3f-rag-viz-demo.vercel.app](https://r3f-rag-viz-demo.vercel.app/)
+| | |
+|---|---|
+| **Live demo** | [r3f-rag-viz-demo.vercel.app](https://r3f-rag-viz-demo.vercel.app/) |
+| **npm (React)** | [r3f-rag-viz-react](https://www.npmjs.com/package/r3f-rag-viz-react) |
+| **npm (core)** | [r3f-rag-viz-core](https://www.npmjs.com/package/r3f-rag-viz-core) |
 
 ## Demo
 
-![Search → 3D knowledge graph — drag nodes, inspect chunks](./assets/demo.gif)
+![Search ? 3D knowledge graph ? drag nodes, inspect chunks](./assets/demo.gif)
 
-Try it online → **[r3f-rag-viz-demo.vercel.app](https://r3f-rag-viz-demo.vercel.app/)**
+Try it online ? **[r3f-rag-viz-demo.vercel.app](https://r3f-rag-viz-demo.vercel.app/)**
 
 1. Type a query (or pick a suggestion) and click **Visualize**
-2. Retrieval hits become a **3D subgraph** — node size/color reflect relevance scores
-3. **Left-drag** nodes · **right-drag** rotate · **scroll** zoom · click a node to read its chunk in the inspector
+2. Retrieval hits become a **3D subgraph** ? node size/color reflect relevance scores
+3. **Left-drag** nodes � **right-drag** rotate � **scroll** zoom � click a node to read its chunk in the inspector
 
-## Monorepo structure
-
-```
-r3f-rag-viz/
-├── packages/
-│   ├── core/          @r3f-rag-viz/core   — types, layouts, graph builders
-│   └── react/         @r3f-rag-viz/react — <RAGScene>, hooks
-└── apps/
-    └── demo/          Next.js demo with local RAG search
-```
-
-## Quick Start
+## Install
 
 ```bash
-npm install
-npm run dev
+npm install r3f-rag-viz-react r3f-rag-viz-core
 ```
 
-Open [http://localhost:3000](http://localhost:3000) — search the sample knowledge base and visualize results in 3D.
+| Package | npm | Description |
+|---------|-----|-------------|
+| `r3f-rag-viz-react` | [view](https://www.npmjs.com/package/r3f-rag-viz-react) | `<RAGScene />`, hooks |
+| `r3f-rag-viz-core` | [view](https://www.npmjs.com/package/r3f-rag-viz-core) | Types, force-3d layout, `buildGraphFromRetrieval` |
 
-## Deploy to Vercel
-
-This is a **monorepo**; the Next.js app lives in `apps/demo`.
-
-1. Import the repo on [Vercel](https://vercel.com/new)
-2. Set **Root Directory** → `apps/demo`
-3. Framework Preset → **Next.js** (auto-detected)
-4. **Do not** set Output Directory to `public` — leave empty or use defaults
-5. Deploy
-
-`apps/demo/vercel.json` installs workspace deps from the repo root and builds packages first.
-
-If Root Directory is the repo root instead, use the root `vercel.json` and set Framework to **Next.js**.
-
-## Install (npm)
-
-```bash
-npm install @r3f-rag-viz/react @r3f-rag-viz/core
-```
-
-Peer dependencies: `react`, `react-dom`, `three`, `@react-three/fiber`, `@react-three/drei`, `zustand`.
+**Peer dependencies:** `react`, `react-dom`, `three`, `@react-three/fiber`, `@react-three/drei`, `zustand`
 
 ## Usage
 
 ```tsx
 "use client";
 
-import { RAGScene, useSelectedNode } from "@r3f-rag-viz/react";
-import type { RAGGraph } from "@r3f-rag-viz/core";
+import { RAGScene, useSelectedNode } from "r3f-rag-viz-react";
+import type { RAGGraph } from "r3f-rag-viz-core";
 
 const graph: RAGGraph = {
   nodes: [
@@ -86,7 +65,7 @@ const graph: RAGGraph = {
 ### Build subgraph from retrieval hits
 
 ```tsx
-import { buildGraphFromRetrieval } from "@r3f-rag-viz/core";
+import { buildGraphFromRetrieval } from "r3f-rag-viz-core";
 
 const graph = buildGraphFromRetrieval(
   searchResults, // RetrievalChunk[]
@@ -97,41 +76,55 @@ const graph = buildGraphFromRetrieval(
 ### Hooks
 
 ```tsx
-import { useRAGNodes, useSelectedNode, useSceneEditor } from "@r3f-rag-viz/react";
+import { useRAGNodes, useSelectedNode, useSceneEditor } from "r3f-rag-viz-react";
 ```
 
-## Demo: RAG search
+## Monorepo (contributors)
 
-**Default (no API key):** BM25-style local search over a sample corpus.
+```
+r3f-rag-viz/
+??? packages/
+?   ??? core/          r3f-rag-viz-core
+?   ??? react/         r3f-rag-viz-react
+??? apps/
+    ??? demo/          Next.js demo with local RAG search
+```
 
-**Optional:** set `OPENAI_API_KEY` in `apps/demo/.env.local` (see `.env.example`) to use OpenAI embeddings — auto-fallback to local on failure.
+```bash
+git clone https://github.com/lz1834career/r3f-rag-viz.git
+cd r3f-rag-viz
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Deploy demo (Vercel)
+
+Root Directory ? `apps/demo` � Framework ? **Next.js** � do not set Output Directory to `public`.
+
+See `apps/demo/vercel.json` and [PUBLISHING.md](./PUBLISHING.md) for maintainers.
+
+## Demo API (local search)
+
+**Default:** BM25 over sample corpus (no API key).
+
+**Optional:** `OPENAI_API_KEY` in `apps/demo/.env.local` for embeddings (see `.env.example`).
 
 ```bash
 POST /api/search
 { "query": "vector embeddings", "topK": 6, "engine": "auto" }
 ```
 
-Returns `{ graph, meta: { engine, resultCount } }`.
-
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start demo (transpiles packages from source) |
+| `npm run dev` | Start demo |
 | `npm run build` | Build all workspaces |
-| `npm run build:packages` | Build core + react only |
-| `npm test` | Run core unit tests |
-
-## Publish to npm
-
-Packages export compiled `dist/` — ready for npm. See **[PUBLISHING.md](./PUBLISHING.md)** for the full checklist.
-
-```bash
-npm run pack:check   # build + dry-run tarball
-npm login
-npm publish -w @r3f-rag-viz/core --access public
-npm publish -w @r3f-rag-viz/react --access public
-```
+| `npm run build:packages` | Build core + react |
+| `npm test` | Core unit tests |
+| `npm run pack:check` | Pre-publish dry-run |
 
 ## Data contract
 
@@ -139,21 +132,16 @@ See [packages/core/src/types.ts](packages/core/src/types.ts) for `RAGNode`, `RAG
 
 ## Roadmap
 
-- [x] Monorepo (`@r3f-rag-viz/core`, `@r3f-rag-viz/react`)
-- [x] Demo with search → 3D visualization
-- [x] GitHub Actions CI + core tests
-- [x] README demo GIF
-- [x] Live demo on Vercel
-- [x] npm publish ready (`dist` exports, `pack:check`)
-- [ ] npm publish (run `npm publish` when ready)
+- [x] Monorepo + npm (`r3f-rag-viz-core`, `r3f-rag-viz-react` v0.1.0)
+- [x] Live demo � CI � README GIF
 - [ ] Semantic / UMAP layout (Web Worker)
 - [ ] Adapters (LangChain, Neo4j GraphRAG)
-- [ ] NL scene editing (`@r3f-rag-viz/agent`)
+- [ ] NL scene editing
 - [ ] LOD + instanced rendering (500+ nodes)
 
 ## Tech stack
 
-React · Next.js · React Three Fiber · d3-force-3d · Zustand · TanStack Query · Tailwind CSS
+React � Next.js � React Three Fiber � d3-force-3d � Zustand � TanStack Query � Tailwind CSS
 
 ## License
 

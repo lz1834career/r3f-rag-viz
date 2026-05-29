@@ -10,10 +10,10 @@
     "dev": "npm run dev -w demo",
     "build": "npm run build:packages && npm run build -w demo",
     "build:demo": "npm run build:packages && npm run build -w demo",
-    "build:packages": "npm run build -w @r3f-rag-viz/core && npm run build -w @r3f-rag-viz/react",
-    "typecheck": "npm run typecheck -w @r3f-rag-viz/core && npm run typecheck -w @r3f-rag-viz/react && npm run typecheck -w demo",
-    "test": "npm run test -w @r3f-rag-viz/core",
-    "pack:check": "npm run build:packages && npm pack -w @r3f-rag-viz/core --dry-run && npm pack -w @r3f-rag-viz/react --dry-run"
+    "build:packages": "npm run build -w r3f-rag-viz-core && npm run build -w r3f-rag-viz-react",
+    "typecheck": "npm run typecheck -w r3f-rag-viz-core && npm run typecheck -w r3f-rag-viz-react && npm run typecheck -w demo",
+    "test": "npm run test -w r3f-rag-viz-core",
+    "pack:check": "npm run build:packages && npm pack -w r3f-rag-viz-core --dry-run && npm pack -w r3f-rag-viz-react --dry-run"
   },
   "repository": {
     "type": "git",

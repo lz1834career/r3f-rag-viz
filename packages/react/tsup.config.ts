@@ -14,7 +14,7 @@ export default defineConfig({
     "@react-three/fiber",
     "@react-three/drei",
     "zustand",
-    "@r3f-rag-viz/core",
+    "r3f-rag-viz-core",
     "d3-force-3d",
   ],
   banner: {

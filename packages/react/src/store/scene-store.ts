@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { RAGGraph, SceneChangeEvent, SceneNode } from "@r3f-rag-viz/core";
+import type { RAGGraph, SceneChangeEvent, SceneNode } from "r3f-rag-viz-core";
 
 type SceneStore = {
   graph: RAGGraph | null;

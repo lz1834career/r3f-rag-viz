@@ -1,5 +1,5 @@
 {
-  "name": "@r3f-rag-viz/react",
+  "name": "r3f-rag-viz-react",
   "version": "0.1.0",
   "description": "React Three Fiber components for editable 3D RAG knowledge graphs",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@r3f-rag-viz/core": "^0.1.0"
+    "r3f-rag-viz-core": "^0.1.0"
   },
   "peerDependencies": {
     "@react-three/drei": ">=9.0.0",
@@ -61,7 +61,7 @@
     }
   },
   "devDependencies": {
-    "@r3f-rag-viz/core": "0.1.0",
+    "r3f-rag-viz-core": "0.1.0",
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.2",
     "@types/react": "^19.1.4",

@@ -16,8 +16,8 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/*": ["./src/*"],
-      "@r3f-rag-viz/core": ["../../packages/core/src/index.ts"],
-      "@r3f-rag-viz/react": ["../../packages/react/src/index.ts"]
+      "r3f-rag-viz-core": ["../../packages/core/src/index.ts"],
+      "r3f-rag-viz-react": ["../../packages/react/src/index.ts"]
     }
   },
   "include": [

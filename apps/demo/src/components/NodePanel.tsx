@@ -1,6 +1,6 @@
 "use client";
 
-import { useSelectedNode, useSceneEditor } from "@r3f-rag-viz/react";
+import { useSelectedNode, useSceneEditor } from "r3f-rag-viz-react";
 
 export function NodePanel() {
   const node = useSelectedNode();

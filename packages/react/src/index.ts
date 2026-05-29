@@ -6,4 +6,4 @@ export type {
   RAGEdge,
   SceneChangeEvent,
   RAGSceneProps,
-} from "@r3f-rag-viz/core";
+} from "r3f-rag-viz-core";

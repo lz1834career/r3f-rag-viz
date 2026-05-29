@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import type { createForce3dLayout } from "@r3f-rag-viz/core";
+import type { createForce3dLayout } from "r3f-rag-viz-core";
 import { NodeRegistry } from "./node-registry";
 
 export type SimulationLayout = ReturnType<typeof createForce3dLayout>;

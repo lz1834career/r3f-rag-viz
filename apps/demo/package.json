@@ -9,8 +9,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@r3f-rag-viz/core": "^0.1.0",
-    "@r3f-rag-viz/react": "^0.1.0",
+    "r3f-rag-viz-core": "^0.1.0",
+    "r3f-rag-viz-react": "^0.1.0",
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.2",
     "@tanstack/react-query": "^5.77.2",

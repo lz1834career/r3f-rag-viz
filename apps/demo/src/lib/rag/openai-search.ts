@@ -3,7 +3,7 @@ import {
   cosineSimilarity,
   type RAGGraph,
   type RetrievalChunk,
-} from "@r3f-rag-viz/core";
+} from "r3f-rag-viz-core";
 import corpus from "@/data/knowledge-corpus.json";
 import { getCorpusEdges } from "./local-search";
 

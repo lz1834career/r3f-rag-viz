@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useThree, type ThreeEvent } from "@react-three/fiber";
 import type { Mesh } from "three";
 import { Plane, Vector3 } from "three";
-import { scoreToColor, scoreToScale, type SceneNode } from "@r3f-rag-viz/core";
+import { scoreToColor, scoreToScale, type SceneNode } from "r3f-rag-viz-core";
 import { useSceneStore } from "./store/scene-store";
 import { useSimulation } from "./simulation-context";
 

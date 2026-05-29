@@ -8,7 +8,7 @@ import {
   LineBasicMaterial,
   LineSegments,
 } from "three";
-import type { SimLink, SceneNode } from "@r3f-rag-viz/core";
+import type { SimLink, SceneNode } from "r3f-rag-viz-core";
 
 type GraphEdgesProps = {
   links: SimLink[];

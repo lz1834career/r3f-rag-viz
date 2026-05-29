@@ -1,4 +1,4 @@
-import { buildGraphFromRetrieval } from "@r3f-rag-viz/core";
+import { buildGraphFromRetrieval } from "r3f-rag-viz-core";
 import { NextResponse } from "next/server";
 import { getCorpusEdges, searchCorpus } from "@/lib/rag/local-search";
 import { searchWithOpenAI } from "@/lib/rag/openai-search";

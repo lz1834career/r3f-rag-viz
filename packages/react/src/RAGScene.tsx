@@ -6,7 +6,7 @@ import { SceneControls } from "./SceneControls";
 import {
   createForce3dLayout,
   type RAGSceneProps,
-} from "@r3f-rag-viz/core";
+} from "r3f-rag-viz-core";
 import { GraphEdges } from "./GraphEdges";
 import { GraphNode } from "./GraphNode";
 import { NodeRegistry } from "./node-registry";

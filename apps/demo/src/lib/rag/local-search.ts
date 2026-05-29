@@ -1,4 +1,4 @@
-import type { RetrievalChunk } from "@r3f-rag-viz/core";
+import type { RetrievalChunk } from "r3f-rag-viz-core";
 import corpus from "@/data/knowledge-corpus.json";
 
 type CorpusDoc = {

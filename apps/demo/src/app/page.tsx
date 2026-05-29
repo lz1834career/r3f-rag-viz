@@ -3,13 +3,13 @@
 import { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
 import { useQuery } from "@tanstack/react-query";
-import { buildGraphFromRetrieval, type RAGGraph, type SceneChangeEvent } from "@r3f-rag-viz/core";
+import { buildGraphFromRetrieval, type RAGGraph, type SceneChangeEvent } from "r3f-rag-viz-core";
 import { NodePanel } from "@/components/NodePanel";
 import { SearchBar } from "@/components/SearchBar";
 import corpus from "@/data/knowledge-corpus.json";
 
 const RAGScene = dynamic(
-  () => import("@r3f-rag-viz/react").then((m) => m.RAGScene),
+  () => import("r3f-rag-viz-react").then((m) => m.RAGScene),
   { ssr: false, loading: () => <SceneLoader /> }
 );
 

@@ -40,8 +40,8 @@ body:
       label: Area
       options:
         - Live demo (Vercel)
-        - @r3f-rag-viz/react (3D scene)
-        - @r3f-rag-viz/core (types / layout)
+        - r3f-rag-viz-react (3D scene)
+        - r3f-rag-viz-core (types / layout)
         - Local dev setup
         - CI / build
         - Other
