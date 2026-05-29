@@ -1,0 +1,81 @@
+{
+  "nodes": [
+    {
+      "id": "rag-core",
+      "label": "RAG Pipeline",
+      "content": "Retrieval-Augmented Generation combines vector search with LLM synthesis. Documents are chunked, embedded, and stored in a vector database for semantic retrieval.",
+      "metadata": { "category": "concept" }
+    },
+    {
+      "id": "embeddings",
+      "label": "Embeddings",
+      "content": "Dense vector representations of text chunks. Similar meaning maps to nearby vectors — search uses cosine distance or dot product in high-dimensional space.",
+      "metadata": { "category": "concept" }
+    },
+    {
+      "id": "vector-db",
+      "label": "Vector Database",
+      "content": "Specialized store for approximate nearest neighbor search — Pinecone, Weaviate, pgvector, Chroma, etc.",
+      "metadata": { "category": "infra" }
+    },
+    {
+      "id": "chunking",
+      "label": "Document Chunking",
+      "content": "Splitting source documents into retrievable units. Strategies: fixed-size, semantic, recursive, parent-child.",
+      "metadata": { "category": "pipeline" }
+    },
+    {
+      "id": "reranker",
+      "label": "Reranker",
+      "content": "Cross-encoder or LLM-based reranking improves retrieval precision after initial vector search.",
+      "metadata": { "category": "pipeline" }
+    },
+    {
+      "id": "graphrag",
+      "label": "GraphRAG",
+      "content": "Microsoft's approach: build a knowledge graph from documents, use community detection for global queries.",
+      "metadata": { "category": "concept" }
+    },
+    {
+      "id": "r3f",
+      "label": "React Three Fiber",
+      "content": "React renderer for Three.js. Declarative 3D scenes with hooks, perfect for interactive knowledge graph visualization.",
+      "metadata": { "category": "viz" }
+    },
+    {
+      "id": "force-layout",
+      "label": "Force-Directed Layout",
+      "content": "Physics simulation places connected nodes close together and repels unrelated nodes — ideal for exploring graph structure in 3D.",
+      "metadata": { "category": "viz" }
+    },
+    {
+      "id": "nl-edit",
+      "label": "NL Scene Editing",
+      "content": "Natural language commands parsed by LLM into structured scene operations: move, highlight, filter, cluster.",
+      "metadata": { "category": "future" }
+    },
+    {
+      "id": "bidirectional",
+      "label": "Bidirectional Sync",
+      "content": "Scene edits emit events back to the host app, which can update the vector store or knowledge graph.",
+      "metadata": { "category": "concept" }
+    }
+  ],
+  "edges": [
+    { "id": "e1", "source": "rag-core", "target": "embeddings", "weight": 0.9, "type": "uses" },
+    { "id": "e2", "source": "rag-core", "target": "vector-db", "weight": 0.85, "type": "uses" },
+    { "id": "e3", "source": "rag-core", "target": "chunking", "weight": 0.88, "type": "includes" },
+    { "id": "e4", "source": "embeddings", "target": "vector-db", "weight": 0.92, "type": "stored_in" },
+    { "id": "e5", "source": "chunking", "target": "embeddings", "weight": 0.8, "type": "feeds" },
+    { "id": "e6", "source": "rag-core", "target": "reranker", "weight": 0.75, "type": "optional" },
+    { "id": "e7", "source": "reranker", "target": "vector-db", "weight": 0.7, "type": "post_process" },
+    { "id": "e8", "source": "graphrag", "target": "rag-core", "weight": 0.78, "type": "extends" },
+    { "id": "e9", "source": "graphrag", "target": "vector-db", "weight": 0.65, "type": "uses" },
+    { "id": "e10", "source": "r3f", "target": "force-layout", "weight": 0.9, "type": "renders" },
+    { "id": "e11", "source": "force-layout", "target": "graphrag", "weight": 0.72, "type": "visualizes" },
+    { "id": "e12", "source": "r3f", "target": "rag-core", "weight": 0.6, "type": "visualizes" },
+    { "id": "e13", "source": "bidirectional", "target": "rag-core", "weight": 0.8, "type": "extends" },
+    { "id": "e14", "source": "nl-edit", "target": "r3f", "weight": 0.55, "type": "controls" },
+    { "id": "e15", "source": "bidirectional", "target": "vector-db", "weight": 0.7, "type": "syncs" }
+  ]
+}
