@@ -50,9 +50,19 @@ This is a **monorepo**; the Next.js app lives in `apps/demo`.
 
 If Root Directory is the repo root instead, use the root `vercel.json` and set Framework to **Next.js**.
 
+## Install (npm)
+
+```bash
+npm install @r3f-rag-viz/react @r3f-rag-viz/core
+```
+
+Peer dependencies: `react`, `react-dom`, `three`, `@react-three/fiber`, `@react-three/drei`, `zustand`.
+
 ## Usage
 
 ```tsx
+"use client";
+
 import { RAGScene, useSelectedNode } from "@r3f-rag-viz/react";
 import type { RAGGraph } from "@r3f-rag-viz/core";
 
@@ -114,13 +124,14 @@ Returns `{ graph, meta: { engine, resultCount } }`.
 
 ## Publish to npm
 
-```bash
-npm run build:packages
-npm publish -w @r3f-rag-viz/core
-npm publish -w @r3f-rag-viz/react
-```
+Packages export compiled `dist/` — ready for npm. See **[PUBLISHING.md](./PUBLISHING.md)** for the full checklist.
 
-Before publishing, update `exports` in each package to point to `./dist/*` (or use the built `dist` tarballs from `files` field).
+```bash
+npm run pack:check   # build + dry-run tarball
+npm login
+npm publish -w @r3f-rag-viz/core --access public
+npm publish -w @r3f-rag-viz/react --access public
+```
 
 ## Data contract
 
@@ -133,7 +144,8 @@ See [packages/core/src/types.ts](packages/core/src/types.ts) for `RAGNode`, `RAG
 - [x] GitHub Actions CI + core tests
 - [x] README demo GIF
 - [x] Live demo on Vercel
-- [ ] npm publish
+- [x] npm publish ready (`dist` exports, `pack:check`)
+- [ ] npm publish (run `npm publish` when ready)
 - [ ] Semantic / UMAP layout (Web Worker)
 - [ ] Adapters (LangChain, Neo4j GraphRAG)
 - [ ] NL scene editing (`@r3f-rag-viz/agent`)
