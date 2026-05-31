@@ -9,7 +9,11 @@
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "r3f-rag-viz-core": ["../core/src/index.ts"]
+    }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "../core/src/d3-force-3d.d.ts"]
 }
